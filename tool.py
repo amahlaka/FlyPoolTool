@@ -1,6 +1,7 @@
 import json
 import requests
 import time
+
 wallet = input("Please input your wallet address: ")
 
 def getStats(user):
@@ -14,7 +15,11 @@ while(True):
     stats = getStats(wallet)
     hashrate = stats["hashRate"]
     payout = stats["payouts"]
-    print(payout[1]["paidOn"]+" amount: 0."+str(payout[1]["amount"]).rjust(8, '0'))
+    unpaid = str(stats["unpaid"]).rjust(9, '0')
+    print(payout[1]["paidOn"])
     print(hashrate)
-    print('0.'+str(stats["unpaid"]).rjust(8, '0'))
+    print(str(stats["avgHashrate"])+'H/s')
+    fxd = unpaid[:-8]+'.'+unpaid[-8:]
+
+    print(fxd)
     time.sleep(10)
